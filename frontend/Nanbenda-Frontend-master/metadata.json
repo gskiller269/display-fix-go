@@ -1,0 +1,6 @@
+{
+  "name": "Nanbenda Mart",
+  "description": "An elite doorstep device repairs portal and administrative dashboard for Nanbenda Mart, managing device lifecycles, ticketing, and workshop diagnostics in real time.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

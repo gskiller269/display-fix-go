@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - JWT_SECRET=${JWT_SECRET}
+      - GOOGLE_GEN_AI_KEY=${GOOGLE_GEN_AI_KEY}
+    volumes:
+      - ./uploads:/app/uploads
+    networks:
+      - coolify
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nanbenda-api.rule=Host(`backend.nanbenda.in`)"
+      - "traefik.http.routers.nanbenda-api.entrypoints=https"
+      - "traefik.http.routers.nanbenda-api.tls=true"
+      - "traefik.http.routers.nanbenda-api.tls.certresolver=letsencrypt"
+      - "traefik.http.services.nanbenda-api.loadbalancer.server.port=5000"
+      - "traefik.docker.network=coolify"
+
+networks:
+  coolify:
+    external: true
