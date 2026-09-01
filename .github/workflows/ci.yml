@@ -1,0 +1,18 @@
+﻿name: CI Verification
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify Monorepo Structure
+        run: |
+          test -d frontend
+          test -d backend
+          echo "Monorepo validation passed successfully."
